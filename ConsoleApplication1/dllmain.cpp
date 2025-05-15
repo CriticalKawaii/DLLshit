@@ -1,24 +1,31 @@
 #include <windows.h>
+extern "C" int count = 0;
+CRITICAL_SECTION cs;
 
 BOOL WINAPI DllMain(HINSTANCE hDll, DWORD dwReason, LPVOID lpReserved) {
-	switch (dwReason)
-	{
-	case DLL_PROCESS_ATTACH:
-		break;
-	case DLL_THREAD_ATTACH:
-		break;
-	case DLL_THREAD_DETACH:
-		break;
-	case DLL_PROCESS_DETACH:
-		break;
-	}return true;
+    switch (dwReason) {
+    case DLL_PROCESS_ATTACH:
+        InitializeCriticalSection(&cs);
+        break;
+    case DLL_PROCESS_DETACH:
+        DeleteCriticalSection(&cs);
+        break;
+    }
+    return TRUE;
 }
-extern "C" int count = -5;
+
 extern "C" int Add(int n) {
-	count += n;
-	return count;
+    EnterCriticalSection(&cs);
+    count += n;
+    int result = count;
+    LeaveCriticalSection(&cs);
+    return result;
 }
+
 extern "C" int Sub(int n) {
-	count -= n;
-	return count;
+    EnterCriticalSection(&cs);
+    count -= n;
+    int result = count;
+    LeaveCriticalSection(&cs);
+    return result;
 }

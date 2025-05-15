@@ -9,7 +9,7 @@ int main()
     int (*Sub)(int); 
     int* pCount; 
 
-    hDll = LoadLibrary("Dll1.dll");
+    hDll = LoadLibrary("dllmain.dll");
     if (!hDll)
     {
         cerr << "Load library failed." << endl;
@@ -42,7 +42,7 @@ int main()
         return GetLastError();
     }
 
-    cout << "Press any key to exit";
+    cout << "Press any key to exit\n";
     cin.get();
     return 0;
 }

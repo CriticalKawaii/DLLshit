@@ -1,4 +1,4 @@
-﻿LIBRARY "Dll1"
+﻿LIBRARY "dllmain"
 EXPORTS
 	count @1 DATA
 	Add @2

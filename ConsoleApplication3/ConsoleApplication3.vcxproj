@@ -134,9 +134,6 @@
       <Project>{998d546d-2b9e-4464-a254-38d7d96958a9}</Project>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="..\ConsoleApplication1\Source.def" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
